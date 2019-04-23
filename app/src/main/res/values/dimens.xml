@@ -1,0 +1,28 @@
+<resources>
+    <dimen name="pixelXXS">8dp</dimen>
+    <dimen name="pixelXS">16dp</dimen>
+    <dimen name="pixelS">24dp</dimen>
+    <dimen name="pixelM">32dp</dimen>
+    <dimen name="pixelL">40dp</dimen>
+    <dimen name="pixelXL">48dp</dimen>
+    <dimen name="pixelXXL">56dp</dimen>
+    <dimen name="pixelMax">64dp</dimen>
+
+    <dimen name="letterXXS">8sp</dimen>
+    <dimen name="letterXS">16sp</dimen>
+    <dimen name="letterS">24sp</dimen>
+    <dimen name="letterM">32sp</dimen>
+    <dimen name="letterL">40sp</dimen>
+    <dimen name="letterXL">48sp</dimen>
+    <dimen name="letterXXL">56sp</dimen>
+    <dimen name="letterMax">64sp</dimen>
+
+    <dimen name="sizeXXS">64dp</dimen>
+    <dimen name="sizeXS">128dp</dimen>
+    <dimen name="sizeS">192dp</dimen>
+    <dimen name="sizeM">256dp</dimen>
+    <dimen name="sizeL">320dp</dimen>
+    <dimen name="sizeXL">384dp</dimen>
+    <dimen name="sizeXXL">448dp</dimen>
+
+</resources>

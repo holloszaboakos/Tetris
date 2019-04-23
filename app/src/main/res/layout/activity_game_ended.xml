@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/mainMenu"
+        android:layout_height="match_parent" android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryExtraDark"
+
+        android:padding="@dimen/pixelXS"
+>
+    <TextView
+            android:id="@+id/gameEndTV"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/RePlayB"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:gravity="center"
+            android:padding="@dimen/pixelXS"
+            android:layout_margin="@dimen/pixelXXS"
+
+            android:text="@string/gameEnded"
+            android:textSize="@dimen/letterM"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+    <TextView
+            android:id="@+id/endPointTV"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@id/gameEndTV"
+            app:layout_constraintBottom_toTopOf="@+id/RePlayB"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:gravity="center"
+            android:padding="@dimen/pixelXS"
+            android:layout_margin="@dimen/pixelXXS"
+
+            android:textSize="@dimen/letterM"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+
+    <Button
+            android:id="@+id/RePlayB"
+
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toBottomOf="@id/gameEndTV"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gameEndTV"
+            app:layout_constraintEnd_toEndOf="@id/gameEndTV"
+
+            android:gravity="center"
+            android:padding="@dimen/pixelXS"
+            android:layout_margin="@dimen/pixelXXS"
+
+            android:text="Új Játék"
+            android:textSize="@dimen/letterXS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+
+</android.support.constraint.ConstraintLayout>

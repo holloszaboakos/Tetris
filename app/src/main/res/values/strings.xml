@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Tetris</string>
+    <string name="WelcomeString">Boldog Karácsonyt Apu!</string>
+    <string name="StartGame">Kezdődjön a játék!</string>
+    <string name="toTheRight">JOBBRA</string>
+    <string name="turn">FORGAT</string>
+    <string name="toTheLeft">BALRA</string>
+    <string name="continueGame">Folytatás</string>
+    <string name="gameEnded">Szép Játék Volt!</string>
+    <string name="tickerButton">G\ny\no\nr\ns\ní\nt\ná\ns</string>
+    <string name="startPoint">0\nP\nO\nN\nT</string>
+</resources>

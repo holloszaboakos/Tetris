@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".GameSurface"
+
+        android:background="@color/colorPrimaryExtraDark"
+>
+
+    <android.support.constraint.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+
+    <boss.tetris.view.MySurface
+            android:id="@+id/surfaceMS"
+
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            app:layout_constraintDimensionRatio="1:2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/controlLL"
+
+
+            xmlns:android="http://schemas.android.com/apk/res/android"
+
+    />
+    <Button
+            android:id="@+id/TickerB"
+
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
+            app:layout_constraintStart_toEndOf="@id/surfaceMS"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/surfaceMS"
+            app:layout_constraintBottom_toBottomOf="@id/surfaceMS"
+
+            android:layout_margin="@dimen/pixelXXS"
+
+            android:text="@string/tickerButton"
+            android:textSize="@dimen/letterS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+
+            tools:ignore="ButtonStyle"/>
+    <TextView
+            android:id="@+id/PointTV"
+
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/surfaceMS"
+            app:layout_constraintTop_toTopOf="@id/surfaceMS"
+            app:layout_constraintBottom_toBottomOf="@id/surfaceMS"
+
+            android:layout_margin="@dimen/pixelXXS"
+            android:gravity="center"
+
+            android:text="@string/startPoint"
+            android:textSize="@dimen/letterS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+
+            tools:ignore="ButtonStyle"/>
+
+
+    <LinearLayout
+            android:id="@+id/controlLL"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/surfaceMS"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="4:1"
+
+            android:gravity="center"
+            android:weightSum="3"
+
+            android:background="@drawable/field_background"
+    >
+
+        <Button
+                android:id="@+id/LeftB"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:layout_margin="@dimen/pixelXXS"
+
+                android:text="@string/toTheLeft"
+                android:textSize="@dimen/letterS"
+                android:textColor="@color/bloodyLetterLight"
+                android:textStyle="bold"
+                android:background="@drawable/button_background"
+
+                tools:ignore="ButtonStyle"/>
+        <Button
+                android:id="@+id/TurnB"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:layout_margin="@dimen/pixelXXS"
+
+                android:text="@string/turn"
+                android:textSize="@dimen/letterS"
+                android:textColor="@color/bloodyLetterLight"
+                android:textStyle="bold"
+                android:background="@drawable/button_background"
+
+                tools:ignore="ButtonStyle"/>
+        <Button
+                android:id="@+id/RightB"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+
+                android:layout_margin="@dimen/pixelXXS"
+
+                android:text="@string/toTheRight"
+                android:textSize="@dimen/letterS"
+                android:textColor="@color/bloodyLetterLight"
+                android:textStyle="bold"
+                android:background="@drawable/button_background"
+
+                tools:ignore="ButtonStyle"/>
+    </LinearLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

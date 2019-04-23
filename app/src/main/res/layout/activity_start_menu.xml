@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/mainMenu"
+        android:layout_height="match_parent" android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryExtraDark"
+
+        android:padding="@dimen/pixelXS"
+>
+    <TextView
+            android:id="@+id/welcomeTV"
+
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/NewGameB"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            android:gravity="center"
+            android:padding="@dimen/pixelXS"
+            android:layout_margin="@dimen/pixelXXS"
+
+            android:text="@string/WelcomeString"
+            android:textSize="@dimen/letterM"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+
+    <Button
+            android:id="@+id/NewGameB"
+
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintTop_toBottomOf="@id/welcomeTV"
+            app:layout_constraintBottom_toBottomOf="@id/ContGameB"
+            app:layout_constraintStart_toStartOf="@id/welcomeTV"
+            app:layout_constraintEnd_toEndOf="@id/welcomeTV"
+
+            android:gravity="center"
+            android:padding="@dimen/pixelXS"
+            android:layout_margin="@dimen/pixelXXS"
+
+            android:text="@string/StartGame"
+            android:textSize="@dimen/letterXS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+
+    <Button
+            android:id="@+id/ContGameB"
+
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintTop_toBottomOf="@id/NewGameB"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/welcomeTV"
+            app:layout_constraintEnd_toEndOf="@id/welcomeTV"
+
+            android:gravity="center"
+            android:padding="@dimen/pixelXS"
+            android:layout_margin="@dimen/pixelXXS"
+
+            android:text="@string/continueGame"
+            android:textSize="@dimen/letterXS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+
+</android.support.constraint.ConstraintLayout>
