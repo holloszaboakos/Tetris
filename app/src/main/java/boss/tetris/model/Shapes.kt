@@ -8,7 +8,8 @@ import boss.tetris.graphics.bitmap.tiny.BTShapeRepresentation
 const val O = false
 const val X = true
 
-enum class Shapes(
+@ExperimentalUnsignedTypes
+enum class Shapes  (
     val representation: BTShapeRepresentation,
     lookUp: EasyWeightMap<Boolean>,
     lookRight: EasyWeightMap<Boolean>,
@@ -92,7 +93,7 @@ enum class Shapes(
         ),
         Color.YELLOW
     ),
-    L_REFLECT(
+    L_REVERSE(
         BTShapeRepresentation(),
         EasyWeightMap(
             arrayOf(

@@ -8,9 +8,12 @@ import android.view.SurfaceView
 import boss.tetris.basics.LifeCicle
 import boss.tetris.basics.Position
 import boss.tetris.graphics.EasyWeightMap
+import boss.tetris.graphics.bitmap.ColorH
 import boss.tetris.graphics.bitmap.tiny.BTGraphicFactory
+import boss.tetris.graphics.bitmap.toColor
 import boss.tetris.model.Stack
 
+@ExperimentalUnsignedTypes
 class MySurface : SurfaceView {
 
 
@@ -74,17 +77,20 @@ class MySurface : SurfaceView {
         })
     }
 
+
     var graphicUpdater: GraphicUpdaterThread? = null
     var justStart = true
 
 
     val tileSizeInPixel = BTGraphicFactory.TileSize
     val pictureSizeInTile: Position = Stack.size
-    val picture: EasyWeightMap<Int> = EasyWeightMap(
+
+    val picture: EasyWeightMap<ColorH> = EasyWeightMap(
         pictureSizeInTile.column * tileSizeInPixel.column,
         pictureSizeInTile.line * tileSizeInPixel.line,
-        Color.TRANSPARENT
+        Color.TRANSPARENT.toUInt().toColor()
     )
+
 
 
     @Synchronized

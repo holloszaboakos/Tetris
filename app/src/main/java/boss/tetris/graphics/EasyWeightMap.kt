@@ -18,8 +18,8 @@ class EasyWeightMap< T : Any >(var columnSize: Int, var lineSize: Int, var empty
     }
 
     fun drawOn(other: EasyWeightMap<T>, startCorner: Position) {
-        for (x in 0..(other.columnSize - 1))
-            for (y in 0..(other.lineSize - 1)) {
+        for (x in 0 until other.columnSize)
+            for (y in 0 until other.lineSize) {
                 if (other[x, y] != other.empty)
                     this[x + startCorner.column, y + startCorner.line] = other[x, y]
                 //this[x + startCorner.column, y + startCorner.line].plusColor(other[x, y])
@@ -27,8 +27,8 @@ class EasyWeightMap< T : Any >(var columnSize: Int, var lineSize: Int, var empty
     }
 
     constructor(_pixels: Array<T>, columnSize: Int,empty:T) : this(columnSize, _pixels.size / columnSize,empty) {
-        for (x in 0..(columnSize - 1))
-            for (y in 0..(lineSize - 1))
+        for (x in 0 until columnSize)
+            for (y in 0 until lineSize)
                 pixels[y * columnSize + x] = _pixels[y * columnSize + x]
     }
 }

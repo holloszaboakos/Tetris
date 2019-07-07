@@ -5,9 +5,11 @@ import boss.tetris.basics.LifeState
 import boss.tetris.basics.NotifiableThread
 import boss.tetris.basics.Position
 import boss.tetris.graphics.EasyWeightMap
+import boss.tetris.graphics.bitmap.ColorH
 import boss.tetris.graphics.bitmap.tiny.BTBlockRepresentation
 import boss.tetris.model.Stack
 
+@ExperimentalUnsignedTypes
 class GraphicUpdaterThread(private val owner: MySurface) : NotifiableThread("Updater") {
 
     private var ourRect = Rect()
@@ -113,10 +115,10 @@ class GraphicUpdaterThread(private val owner: MySurface) : NotifiableThread("Upd
     }
 
 
-    private fun EasyWeightMap<Int>.copyToBitmap(bmp: Bitmap) {
-        for (col in 0..(columnSize - 1))
-            for (lin in 0..(lineSize - 1)) {
-                bmp.setPixel(col, lin, this[col, lin])
+    private fun EasyWeightMap<ColorH>.copyToBitmap(bmp: Bitmap) {
+        for (col in 0 until columnSize)
+            for (lin in 0 until lineSize) {
+                bmp.setPixel(col, lin, this[col, lin].value.toInt())
             }
     }
 }

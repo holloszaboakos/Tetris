@@ -13,6 +13,7 @@ import boss.tetris.model.TickerClock
 import boss.tetris.view.MySurface
 import kotlinx.android.synthetic.main.activity_game_surface.*
 
+@ExperimentalUnsignedTypes
 class GameSurface : AppCompatActivity() {
 
 

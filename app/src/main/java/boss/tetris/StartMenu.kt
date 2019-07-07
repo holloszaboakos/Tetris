@@ -7,6 +7,7 @@ import boss.tetris.model.Stack
 import boss.tetris.model.TickerClock
 import kotlinx.android.synthetic.main.activity_start_menu.*
 
+@ExperimentalUnsignedTypes
 class StartMenu : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

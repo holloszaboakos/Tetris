@@ -9,8 +9,10 @@ object BTGraphicFactory {
 
     val TileSize get() = Position(3, 3)
 
+    @ExperimentalUnsignedTypes
     val BlockRep get() = BTBlockRepresentation()
 
+    @ExperimentalUnsignedTypes
     val ShapeRep get() = BTShapeRepresentation()
 
 }

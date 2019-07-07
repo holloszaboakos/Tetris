@@ -9,6 +9,7 @@ import boss.tetris.basics.Position
 import boss.tetris.graphics.EasyWeightMap
 import boss.tetris.graphics.bitmap.tiny.BTGraphicFactory
 
+@ExperimentalUnsignedTypes
 object Stack : TickerClock.tickable {
     var point=0
     val size = Position(10, 20)
@@ -30,6 +31,7 @@ object Stack : TickerClock.tickable {
     }
 
     operator fun get(coordinate: Position) = blockMap[coordinate.column][coordinate.line]
+
     override fun tick() {
         for (lin in 1 until size.line - 0) {
             var full = true
