@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryExtraDark"
+        android:weightSum="6">
+    <TextView
+            android:id="@+id/modeTV"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
+            android:gravity="center"
+
+            android:text="@string/chose_mode"
+            android:textSize="@dimen/letterS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+
+    <Button
+            android:id="@+id/infiniteB"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
+            android:layout_margin="@dimen/pixelXS"
+
+            android:text="@string/infinite"
+            android:textSize="@dimen/letterXS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+    <Button
+            android:id="@+id/easyB"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
+            android:layout_margin="@dimen/pixelXS"
+
+            android:text="@string/easy"
+            android:textSize="@dimen/letterXS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+    <Button
+            android:id="@+id/normalB"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
+            android:layout_margin="@dimen/pixelXS"
+
+            android:text="@string/normal"
+            android:textSize="@dimen/letterXS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+    <Button
+            android:id="@+id/hardB"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
+            android:layout_margin="@dimen/pixelXS"
+
+            android:text="@string/hard"
+            android:textSize="@dimen/letterXS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+    <Button
+            android:id="@+id/survivalB"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
+            android:layout_margin="@dimen/pixelXS"
+
+            android:text="@string/survival"
+            android:textSize="@dimen/letterXS"
+            android:textColor="@color/bloodyLetterLight"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+    />
+</LinearLayout>

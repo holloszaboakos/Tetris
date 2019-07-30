@@ -1,208 +1,119 @@
 package boss.tetris.model
 
-import android.graphics.Color
-import boss.tetris.basics.Direction
-import boss.tetris.graphics.EasyWeightMap
-import boss.tetris.graphics.bitmap.tiny.BTShapeRepresentation
+import boss.tetris.basics.Dir1D
+import boss.tetris.basics.Dir2D
+import boss.tetris.basics.FreeWays as FW
+import boss.tetris.graphics.Matrix
+import boss.tetris.graphics.base.ShapeRepresentation
+import boss.tetris.graphics.bitmap.Color
+import boss.tetris.view.ViewDataContainer
 
-const val O = false
-const val X = true
 
 @ExperimentalUnsignedTypes
-enum class Shapes  (
-    val representation: BTShapeRepresentation,
-    lookUp: EasyWeightMap<Boolean>,
-    lookRight: EasyWeightMap<Boolean>,
-    lookDown: EasyWeightMap<Boolean>,
-    lookLeft: EasyWeightMap<Boolean>,
-    val color: Int
+enum class Shapes(
+    val rep: ShapeRepresentation,
+    lookUp: Matrix<FW>,
+    val color: Color
 ) {
     LONG(
-        BTShapeRepresentation(),
-        EasyWeightMap(Array(4) { X }, 1, O),
-        EasyWeightMap(Array(4) { X }, 4, O),
-        EasyWeightMap(Array(4) { X }, 1, O),
-        EasyWeightMap(Array(4) { X }, 4, O),
-        Color.BLUE
+        ViewDataContainer.factory.ShapeRep,
+        Matrix(arrayOf(
+            FW.DO,
+            FW.VE,
+            FW.VE,
+            FW.UP ),
+            1, FW.IS),
+        Color.Named.BLUE()
     ),
     SQUARE(
-        BTShapeRepresentation(),
-        EasyWeightMap(Array(4) { X }, 2, O),
-        EasyWeightMap(Array(4) { X }, 2, O),
-        EasyWeightMap(Array(4) { X }, 2, O),
-        EasyWeightMap(Array(4) { X }, 2, O),
-        Color.RED
+        ViewDataContainer.factory.ShapeRep,
+        Matrix(arrayOf(
+            FW.DR, FW.DL,
+            FW.UR, FW.UL ),
+            2, FW.IS),
+        Color.Named.RED()
     ),
     T_LETTER(
-        BTShapeRepresentation(),
-        EasyWeightMap(
-            arrayOf(
-                X, X, X,
-                O, X, O
-            ), 3, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                O, X,
-                X, X,
-                O, X
-            ), 2, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                O, X, O,
-                X, X, X
-            ), 3, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                X, O,
-                X, X,
-                X, O
-            ), 2, O
-        ),
-        Color.GREEN
+        ViewDataContainer.factory.ShapeRep,
+        Matrix(arrayOf(
+            FW.RI, FW.NU, FW.LE,
+            FW.IS, FW.UP, FW.IS ),
+            3, FW.IS),
+        Color.Named.GREEN()
     ),
     L_LETTER(
-        BTShapeRepresentation(),
-        EasyWeightMap(
-            arrayOf(
-                X, O,
-                X, O,
-                X, X
-            ), 2, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                X, X, X,
-                X, O, O
-            ), 3, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                X, X,
-                O, X,
-                O, X
-            ), 2, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                O, O, X,
-                X, X, X
-            ), 3, O
-        ),
-        Color.YELLOW
+        ViewDataContainer.factory.ShapeRep,
+        Matrix(arrayOf(
+            FW.IS, FW.DO,
+            FW.IS, FW.VE,
+            FW.RI, FW.UL),
+            2, FW.IS),
+        Color.Named.YELLOW()
     ),
     L_REVERSE(
-        BTShapeRepresentation(),
-        EasyWeightMap(
-            arrayOf(
-                O, X,
-                O, X,
-                X, X
-            ), 2, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                X, O, O,
-                X, X, X
-            ), 3, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                X, X,
-                X, O,
-                X, O
-            ), 2, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                X, X, X,
-                O, O, X
-            ), 3, O
-        ),
-        0xFFFFA500.toInt()
+        ViewDataContainer.factory.ShapeRep,
+        Matrix(arrayOf(
+            FW.DO, FW.IS,
+            FW.VE, FW.IS,
+            FW.UR, FW.LE),
+            2, FW.IS),
+        Color.Named.ORANGE()
     ),
     Z_LETTER(
-        BTShapeRepresentation(),
-        EasyWeightMap(
-            arrayOf(
-                X, X, O,
-                O, X, X
-            ), 3, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                O, X,
-                X, X,
-                X, O
-            ), 2, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                X, X, O,
-                O, X, X
-            ), 3, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                O, X,
-                X, X,
-                X, O
-            ), 2, O
-        ),
-        Color.LTGRAY
+        ViewDataContainer.factory.ShapeRep,
+        Matrix(arrayOf(
+            FW.RI, FW.DL, FW.IS,
+            FW.IS, FW.UR, FW.LE),
+            3, FW.IS),
+        Color.Named.CIAN()
     ),
     Z_REVERSE(
-        BTShapeRepresentation(),
-        EasyWeightMap(
-            arrayOf(
-                O, X, X,
-                X, X, O
-            ), 3, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                X, O,
-                X, X,
-                O, X
-            ), 2, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                O, X, X,
-                X, X, O
-            ), 3, O
-        ),
-        EasyWeightMap(
-            arrayOf(
-                X, O,
-                X, X,
-                O, X
-            ), 2, O
-        ),
-        Color.DKGRAY
+        ViewDataContainer.factory.ShapeRep,
+        Matrix(arrayOf(
+            FW.IS, FW.DR, FW.LE,
+            FW.RI, FW.UL, FW.IS),
+            3, FW.IS),
+        Color.Named.PURPLE()
     );
 
     init {
-        representation.owner = this
+        rep.owner = this
     }
 
-    private val lookMap = mapOf(
-        Pair(Direction.UP, lookUp),
-        Pair(Direction.RIGHT, lookRight),
-        Pair(Direction.DOWN, lookDown),
-        Pair(Direction.LEFT, lookLeft)
+    var stateCounter: Long = 0
+
+    var direction = Dir2D.UP
+        set(value) {
+            field = value;stateCounter++
+        }
+
+    val lookMap = mapOf(
+        Pair(Dir2D.UP, lookUp),
+        Pair(Dir2D.RIGHT, lookUp[Dir1D.RIGHT]),
+        Pair(Dir2D.DOWN, lookUp[Dir1D.RIGHT][Dir1D.RIGHT]),
+        Pair(Dir2D.LEFT, lookUp[Dir1D.LEFT])
     )
-    private var direction = Direction.UP
-    val Look get() = lookMap[direction] as EasyWeightMap<Boolean>
-    fun rotate() {
+
+    val Look get() = lookMap[direction] as Matrix<FW>
+
+
+    init {
+        for( i in 0 until (lookMap[Dir2D.RIGHT] as Matrix).size.area)
+            (lookMap[Dir2D.RIGHT] as Matrix<FW>)[i]= (lookMap[Dir2D.RIGHT] as Matrix<FW>)[i][Dir1D.RIGHT]
+        for( i in 0 until (lookMap[Dir2D.DOWN] as Matrix).size.area)
+            (lookMap[Dir2D.DOWN] as Matrix<FW>)[i]= (lookMap[Dir2D.DOWN] as Matrix<FW>)[i][Dir1D.RIGHT][Dir1D.RIGHT]
+        for( i in 0 until (lookMap[Dir2D.LEFT] as Matrix).size.area)
+            (lookMap[Dir2D.LEFT] as Matrix<FW>)[i]= (lookMap[Dir2D.LEFT] as Matrix<FW>)[i][Dir1D.LEFT]
+    }
+
+    fun rotate(d:Dir1D) {
         if (!Stack.isHit(
-                lookMap[Direction.values()[direction.ordinal % 4 + 1]] as EasyWeightMap<Boolean>,
+                lookMap[direction.rot(d)] as Matrix<FW>,
                 Stack.shapePosition
             )
         )
-            direction = Direction.values()[direction.ordinal % 4 + 1]
+            direction = direction.rot(d)
+        stateCounter++
     }
 
 

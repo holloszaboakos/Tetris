@@ -1,28 +1,32 @@
 package boss.tetris.model
 
+import boss.tetris.basics.ThreadHolder
 import kotlin.concurrent.thread
 
 object TickerClock {
-    var run = false
-    private var tickerThread:Thread?=null
-    val defTime:Long = 500
-    var time:Long = defTime
+    private val ticker: ThreadHolder = ThreadHolder("TICKER",false)
+    val defTime: Long = 512
+    var time: Long = defTime
     val tickables = mutableListOf<tickable>()
-    fun start() {
-        run = true
-        tickerThread=thread {
-            while (run) {
-                for (tickable in tickables)
-                    tickable.tick()
-                Thread.sleep(time)
+    init {
+        ticker.set {
+            thread {
+                while (ticker.run) {
+                    for (tickable in tickables)
+                        tickable.tick()
+                    Thread.sleep(time)
+                }
             }
         }
     }
-    fun stop(){
-        run=false
-        tickerThread?.join()
-        tickerThread=null
+    fun start() {
+        ticker.start()
     }
+
+    fun stop() {
+        ticker.stop()
+    }
+
     interface tickable {
         fun tick()
     }
