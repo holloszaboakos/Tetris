@@ -1,9 +1,10 @@
-package boss.tetris.graphics.bitmap.flat
+package boss.tetris.graphics.bitmap
 
-import boss.tetris.graphics.EasyWeightMap
-import boss.tetris.graphics.bitmap.ColorH
+import android.graphics.Bitmap
+import boss.tetris.graphics.Matrix
 
 @ExperimentalUnsignedTypes
-interface BFRepresentation {
-	val representation: EasyWeightMap<ColorH>
+interface BRepresentation {
+	val rep: Matrix<Bitmap>
+	var lastRep: Matrix<Bitmap>?
 }

@@ -1,9 +1,8 @@
 package boss.tetris.graphics.base
-
-import boss.tetris.model.Block
+import boss.tetris.model.Stack
 
 @ExperimentalUnsignedTypes
-interface BlockRepresentation {
-    var owner: Block
+interface StackRepresentation {
+    var owner: Stack
     var lastState: Long
 }

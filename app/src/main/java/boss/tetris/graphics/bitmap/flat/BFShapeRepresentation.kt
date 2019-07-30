@@ -1,32 +1,42 @@
-package boss.tetris.graphics.bitmap.tiny
+package boss.tetris.graphics.bitmap.flat
 
-import android.graphics.Color
-import android.util.AndroidException
-import boss.tetris.graphics.EasyWeightMap
-import boss.tetris.graphics.bitmap.ColorH
-import boss.tetris.graphics.bitmap.toColor
+import android.graphics.Bitmap
+import boss.tetris.basics.FreeWays
+import boss.tetris.graphics.Matrix
+import boss.tetris.graphics.base.ShapeRepresentation
+import boss.tetris.graphics.bitmap.BRepresentation
+import boss.tetris.graphics.bitmap.Color
+import boss.tetris.graphics.toBitmap
 import boss.tetris.model.Shapes
 
 @ExperimentalUnsignedTypes
-class BTShapeRepresentation : BTRepresentation {
-    lateinit var owner: Shapes
-    override val representation: EasyWeightMap<ColorH>
+class BFShapeRepresentation : ShapeRepresentation, BRepresentation {
+    override var lastRep: Matrix<Bitmap>? = null
+    override var lastState: Long = 0
+    override lateinit var owner: Shapes
+    override val rep: Matrix<Bitmap>
         get() {
-            val result = EasyWeightMap(
-                owner.Look.columnSize * BTGraphicFactory.TileSize.column,
-                owner.Look.lineSize * BTGraphicFactory.TileSize.line,
-                Color.BLACK.toUInt().toColor()
+            if (lastRep != null && lastState == owner.stateCounter)
+                lastRep
+            val look = owner.Look
+            val result = Matrix(
+                arrayOf(
+                    Matrix(
+                        Array(look.size.area)
+                        {
+                            val col = it%look.size.column
+                            val lin = it/look.size.column
+                            if (look[col, lin] != FreeWays.IS)
+                                owner.color
+                            else
+                                Color.Named.TRANS()},
+                        look.size.column * BFGraphicFactory.TileSize.column,
+                        Color.Named.TRANS()
+                    ).toBitmap()
+                ), 1, Matrix(BFGraphicFactory.TileSize, Color.Named.TRANS()).toBitmap()
             )
-            for (col in 0 until owner.Look.columnSize)
-                for (lin in 0 until owner.Look.lineSize)
-                    if (owner.Look[col, lin])
-                        for (i in 0 until BTGraphicFactory.TileSize.column)
-                            for (j in 0 until BTGraphicFactory.TileSize.line)
-                                result[col * 3 + i, lin * 3 + j] = owner.color.toUInt().toColor()
-                    else
-                        for (i in 0 until BTGraphicFactory.TileSize.column)
-                            for (j in 0 until BTGraphicFactory.TileSize.line)
-                                result[col * 3 + i, lin * 3 + j] =Color.BLACK.toUInt().toColor()
+            lastState = owner.stateCounter
+            lastRep = result
             return result
         }
 

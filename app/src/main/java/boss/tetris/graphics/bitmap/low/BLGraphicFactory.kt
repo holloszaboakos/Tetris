@@ -1,20 +1,20 @@
-package boss.tetris.graphics.bitmap.flat
+package boss.tetris.graphics.bitmap.low
 
-import boss.tetris.basics.Position
+import boss.tetris.basics.Vec2D
 import boss.tetris.graphics.base.GraphicFactory
-import boss.tetris.view.TSurfaceView
+import boss.tetris.view.StackSView
 
 @ExperimentalUnsignedTypes
-object BFGraphicFactory:GraphicFactory {
+object BLGraphicFactory: GraphicFactory {
 
-    override lateinit var graphicLoader: TSurfaceView
+    override lateinit var graphicLoader: StackSView
 
-    override val TileSize get() = Position(3, 3)
-
-    @ExperimentalUnsignedTypes
-    override val BlockRep get() = BFBlockRepresentation()
+    override val TileSize get() = Vec2D(8, 8)
 
     @ExperimentalUnsignedTypes
-    override val ShapeRep get() = BFShapeRepresentation()
+    override val StackRep get() = BLStackRepresentation()
+
+    @ExperimentalUnsignedTypes
+    override val ShapeRep get() = BLShapeRepresentation()
 
 }
