@@ -58,13 +58,13 @@ class NextShapeSView : SurfaceView {
                                 val smaller = canvas?.width ?: 0
                                 val r = Rect(0, 0, smaller, smaller)
                                 canvas?.drawBitmap(
-                                    (SkinStorage.content[Color.Named.GRAY()] as Map<FreeWays, Bitmap>)[FreeWays.IS] as Bitmap,
+                                    (SkinStorage.content[Color.Named.GRAY()] as Map<FreeWays, Bitmap>)[FreeWays.ISOLATED] as Bitmap,
                                     null,
                                     r,
                                     null
                                 )
 
-                                val shapeRep = (Stack.shape.rep as BRepresentation).rep
+                                val shapeRep = (Stack.shape.rep as BRepresentation).representation
                                 for (col in 0 until shapeRep.size.column)
                                     for (lin in 0 until shapeRep.size.line) {
                                         val rect = Rect(

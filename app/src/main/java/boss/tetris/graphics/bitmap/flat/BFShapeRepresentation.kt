@@ -11,13 +11,13 @@ import boss.tetris.model.Shapes
 
 @ExperimentalUnsignedTypes
 class BFShapeRepresentation : ShapeRepresentation, BRepresentation {
-    override var lastRep: Matrix<Bitmap>? = null
+    override var lastRepresentation: Matrix<Bitmap>? = null
     override var lastState: Long = 0
     override lateinit var owner: Shapes
-    override val rep: Matrix<Bitmap>
+    override val representation: Matrix<Bitmap>
         get() {
-            if (lastRep != null && lastState == owner.stateCounter)
-                lastRep
+            if (lastRepresentation != null && lastState == owner.stateCounter)
+                lastRepresentation
             val look = owner.Look
             val result = Matrix(
                 arrayOf(
@@ -26,7 +26,7 @@ class BFShapeRepresentation : ShapeRepresentation, BRepresentation {
                         {
                             val col = it%look.size.column
                             val lin = it/look.size.column
-                            if (look[col, lin] != FreeWays.IS)
+                            if (look[col, lin] != FreeWays.ISOLATED)
                                 owner.color
                             else
                                 Color.Named.TRANS()},
@@ -36,7 +36,7 @@ class BFShapeRepresentation : ShapeRepresentation, BRepresentation {
                 ), 1, Matrix(BFGraphicFactory.TileSize, Color.Named.TRANS()).toBitmap()
             )
             lastState = owner.stateCounter
-            lastRep = result
+            lastRepresentation = result
             return result
         }
 

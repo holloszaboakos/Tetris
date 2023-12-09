@@ -7,12 +7,11 @@ import android.view.SurfaceHolder
 import android.view.Window
 import android.view.WindowManager
 import boss.tetris.basics.Dir1D
-import boss.tetris.basics.Dir2D
+import boss.tetris.basics.Direction2D
 import boss.tetris.model.Stack
 import boss.tetris.model.TickerClock
 import boss.tetris.view.NextShapeSView
 import boss.tetris.view.StackSView
-import boss.tetris.view.ViewDataContainer
 import kotlinx.android.synthetic.main.activity_game_surface.*
 
 @ExperimentalUnsignedTypes
@@ -54,8 +53,8 @@ class GameSurface : AppCompatActivity(), SurfaceHolder.Callback {
                 Stack.tick()
         }
         LeftB.setOnClickListener {
-            if (!Stack.isHit(Stack.shape.Look, Stack.shapePosition + Dir2D.LEFT.vector))
-                Stack.shapePosition += Dir2D.LEFT.vector
+            if (!Stack.isHit(Stack.shape.Look, Stack.shapePosition + Direction2D.LEFT.vector))
+                Stack.shapePosition += Direction2D.LEFT.vector
         }
         RotRB.setOnClickListener {
             Stack.shape.rotate(Dir1D.RIGHT)
@@ -64,8 +63,8 @@ class GameSurface : AppCompatActivity(), SurfaceHolder.Callback {
             Stack.shape.rotate(Dir1D.LEFT)
         }
         RightB.setOnClickListener {
-            if (!Stack.isHit(Stack.shape.Look, Stack.shapePosition + Dir2D.RIGHT.vector))
-                Stack.shapePosition += Dir2D.RIGHT.vector
+            if (!Stack.isHit(Stack.shape.Look, Stack.shapePosition + Direction2D.RIGHT.vector))
+                Stack.shapePosition += Direction2D.RIGHT.vector
         }
     }
 

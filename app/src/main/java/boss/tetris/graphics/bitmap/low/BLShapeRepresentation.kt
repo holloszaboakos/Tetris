@@ -2,7 +2,7 @@ package boss.tetris.graphics.bitmap.low
 
 import android.graphics.Bitmap
 import android.icu.util.Calendar
-import boss.tetris.basics.Dir2D
+import boss.tetris.basics.Direction2D
 import boss.tetris.basics.FreeWays
 import boss.tetris.graphics.Matrix
 import boss.tetris.graphics.base.ShapeRepresentation
@@ -14,19 +14,19 @@ import boss.tetris.model.Shapes
 
 @ExperimentalUnsignedTypes
 class BLShapeRepresentation : ShapeRepresentation, BRepresentation {
-    override var lastRep: Matrix<Bitmap>? = null
+    override var lastRepresentation: Matrix<Bitmap>? = null
     override var lastState: Long = 0
-    val reps = mutableMapOf<Dir2D, Matrix<Bitmap>>()
+    val reps = mutableMapOf<Direction2D, Matrix<Bitmap>>()
     override lateinit var owner: Shapes
     val tsize = BLGraphicFactory.TileSize
-    override val rep: Matrix<Bitmap>
+    override val representation: Matrix<Bitmap>
         get() {
             val time = Calendar.getInstance().timeInMillis
-            if (lastRep != null && lastState == owner.stateCounter)
-                return lastRep as Matrix<Bitmap>
+            if (lastRepresentation != null && lastState == owner.stateCounter)
+                return lastRepresentation as Matrix<Bitmap>
             if (!reps.containsKey(owner.direction)) {
                 for (id in 1..4) {
-                    val di = Dir2D.values()[id]
+                    val di = Direction2D.values()[id]
                     val look = (owner.lookMap[di] as Matrix<FreeWays>)
                     val result = Matrix(
                         look.size,
@@ -41,7 +41,7 @@ class BLShapeRepresentation : ShapeRepresentation, BRepresentation {
                 }
             }
             lastState = owner.stateCounter
-            lastRep = reps[owner.direction]
+            lastRepresentation = reps[owner.direction]
             println("Time3!!! : " + (Calendar.getInstance().timeInMillis - time).toString())
             return reps[owner.direction] as Matrix<Bitmap>
         }

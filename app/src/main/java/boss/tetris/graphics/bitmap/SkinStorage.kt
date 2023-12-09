@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import boss.tetris.R
-import boss.tetris.basics.Dir2D
+import boss.tetris.basics.Direction2D
 import boss.tetris.basics.FreeWays
 import boss.tetris.graphics.Matrix
 import boss.tetris.graphics.toBitmap
@@ -34,13 +34,13 @@ object SkinStorage {
             content[n()] = mutableMapOf<FreeWays, Bitmap>()
             for (fw in FreeWays.values()) {
                 var ix = 0
-                if (fw[Dir2D.UP])
+                if (fw[Direction2D.UP])
                     ix += 1
-                if (fw[Dir2D.DOWN])
+                if (fw[Direction2D.DOWN])
                     ix += 2
-                if (fw[Dir2D.LEFT])
+                if (fw[Direction2D.LEFT])
                     ix += 4
-                if (fw[Dir2D.RIGHT])
+                if (fw[Direction2D.RIGHT])
                     ix += 8
                 (content[n()] as MutableMap<FreeWays, Bitmap>)[fw] = Matrix(
                     Array(ViewDataContainer.factory.TileSize.area) { i -> n().and(skinsbw[ix][i]) },

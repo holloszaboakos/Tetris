@@ -1,9 +1,7 @@
 package boss.tetris.basics
 
-import java.lang.Exception
+import boss.tetris.basics.Direction2D.*
 
-val T = true
-val F = false
 
 enum class FreeWays(
     up: Boolean,
@@ -11,49 +9,50 @@ enum class FreeWays(
     down: Boolean,
     left: Boolean
 ) {
-    IS(F, F, F, F),
-    UP(T, F, F, F),
-    RI(F, T, F, F),
-    DO(F, F, T, F),
-    LE(F, F, F, T),
-    UR(T, T, F, F),
-    DR(F, T, T, F),
-    DL(F, F, T, T),
-    UL(T, F, F, T),
-    VE(T, F, T, F),
-    HO(F, T, F, T),
-    NU(F, T, T, T),
-    NR(T, F, T, T),
-    ND(T, T, F, T),
-    NL(T, T, T, F),
-    AL(T, T, T, T);
+    ISOLATED(false, false, false, false),
+    UP_OPEN(true, false, false, false),
+    RIGHT_OPEN(false, true, false, false),
+    DOWN_OPEN(false, false, true, false),
+    LEFT_OPEN(false, false, false, true),
+    UP_AND_RIGHT_OPEN(true, true, false, false),
+    DOWN_AND_RIGHT_OPEN(false, true, true, false),
+    DOWN_AND_LEFT_OPEN(false, false, true, true),
+    UP_AND_LEFT_OPEN(true, false, false, true),
+    VERTICAL_OPEN(true, false, true, false),
+    HORIZONTAL_OPEN(false, true, false, true),
+    UP_CLOSED(false, true, true, true),
+    RIGHT_CLOSED(true, false, true, true),
+    DOWN_CLOSED(true, true, false, true),
+    LEFT_CLOSED(true, true, true, false),
+    FULL_OPEN(true, true, true, true);
 
-    private val ways = mapOf(
-        Pair(Dir2D.UP, up),
-        Pair(Dir2D.RIGHT, right),
-        Pair(Dir2D.DOWN, down),
-        Pair(Dir2D.LEFT, left)
+    private val isOpenDirection = mapOf(
+        UP to up,
+        RIGHT to right,
+        DOWN to down,
+        LEFT to left
     )
-    operator fun get(d: Dir2D) = ways[d] as Boolean
 
-    private val oneChange = mutableMapOf<Dir2D, FreeWays>()
-    operator fun get(d: Dir2D, b: Boolean): FreeWays {
+    operator fun get(direction: Direction2D) = isOpenDirection.getValue(direction)
+
+    private val oneChange = mutableMapOf<Direction2D, FreeWays>()
+
+    operator fun get(direction: Direction2D, isOpen: Boolean): FreeWays {
         when {
-            ways[d] == b -> return this
-            d in oneChange.keys -> return oneChange[d] as FreeWays
+            isOpenDirection[direction] == isOpen -> return this
+            direction in oneChange.keys -> return oneChange[direction] as FreeWays
             else -> {
-                for (gc in values()) {
-                    var failed = false
-                    for (id in 1..4) {
-                        val di = Dir2D.values()[id]
-                        if (di == d && gc.ways[di] != b)
-                            failed = true
-                        else if (di != d && gc.ways[di] != ways[di])
-                            failed = true
-                    }
+                for (freeWays in values()) {
+                    val failed = Direction2D.values()
+                        .slice(1..4)
+                        .any {
+                            (it == direction && freeWays.isOpenDirection[it] != isOpen) ||
+                                    (it != direction && freeWays.isOpenDirection[it] != isOpenDirection[it])
+                        }
+
                     if (!failed) {
-                        oneChange[d] = gc
-                        return gc
+                        oneChange[direction] = freeWays
+                        return freeWays
                     }
                 }
                 throw Exception("No GridConnection is different in that wall only")
@@ -61,21 +60,18 @@ enum class FreeWays(
         }
     }
 
-    private val oneRot = mutableMapOf<Dir1D, FreeWays>()
-    operator fun get(d: Dir1D) : FreeWays {
-        if (d in oneRot.keys)
-            return oneRot[d] as FreeWays
+    private val oneRotation = mutableMapOf<Dir1D, FreeWays>()
+    operator fun get(direction: Dir1D): FreeWays {
+        if (direction in oneRotation.keys)
+            return oneRotation.getValue(direction)
         else
-            for (gc in values()) {
-                var failed = false
-                for (id in 1..4) {
-                    val di = Dir2D.values()[id]
-                    if (ways[di] != gc.ways[di.rot(d)])
-                        failed = true
+            for (value in values()) {
+                val failed = Direction2D.values().slice(1..4).any {di->
+                    isOpenDirection[di] != value.isOpenDirection[di.rot(direction)]
                 }
                 if (!failed) {
-                    oneRot[d] = gc
-                    return gc
+                    oneRotation[direction] = value
+                    return value
                 }
             }
         throw Exception("No GridConnection is different in that wall only")

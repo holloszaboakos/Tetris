@@ -62,13 +62,13 @@ class StackSView : SurfaceView {
                                     (canvas?.height ?: 0) / 2
                                 val r = Rect(0, 0, smaller, 2 * smaller)
                                 canvas?.drawBitmap(
-                                    (SkinStorage.content[Color.Named.GRAY()] as Map<FreeWays, Bitmap>)[FreeWays.AL] as Bitmap,
+                                    (SkinStorage.content[Color.Named.GRAY()] as Map<FreeWays, Bitmap>)[FreeWays.FULL_OPEN] as Bitmap,
                                     null,
                                     r,
                                     null
                                 )
 
-                                val stackRep = (Stack.rep as BRepresentation).rep
+                                val stackRep = (Stack.rep as BRepresentation).representation
                                 for (col in 0 until Stack.size.column)
                                     for (lin in 0 until Stack.size.line) {
                                         val rect = Rect(
@@ -80,7 +80,7 @@ class StackSView : SurfaceView {
                                         canvas?.drawBitmap(stackRep[col, lin], null, rect, null)
                                     }
 
-                                val shapeRep = (Stack.shape.rep as BRepresentation).rep
+                                val shapeRep = (Stack.shape.rep as BRepresentation).representation
                                 for (col in 0 until shapeRep.size.column)
                                     for (lin in 0 until shapeRep.size.line) {
                                         val rect = Rect(

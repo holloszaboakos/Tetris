@@ -5,6 +5,6 @@ import boss.tetris.graphics.Matrix
 
 @ExperimentalUnsignedTypes
 interface BRepresentation {
-	val rep: Matrix<Bitmap>
-	var lastRep: Matrix<Bitmap>?
+	val representation: Matrix<Bitmap>
+	var lastRepresentation: Matrix<Bitmap>?
 }

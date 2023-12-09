@@ -1,6 +1,6 @@
 package boss.tetris.basics
 
-enum class Dir2D(val vector: Vec2D) {
+enum class Direction2D(val vector: Vec2D) {
     NONE(Vec2D(0, 0)),
     UP(Vec2D(0, -1)),
     RIGHT(Vec2D(1, 0)),
@@ -8,7 +8,7 @@ enum class Dir2D(val vector: Vec2D) {
     LEFT(Vec2D(-1, 0));
 
 
-    val reverse: Dir2D
+    val reverse: Direction2D
         get() {
             if (ordinal == 0)
                 return NONE
@@ -34,7 +34,7 @@ enum class Dir2D(val vector: Vec2D) {
             Dir1D.NONE -> this
         }
 
-    fun valueOfShort(s: String): Dir2D {
+    fun valueOfShort(s: String): Direction2D {
         for (d in values()) {
             if (d.name.startsWith(s.toUpperCase()))
                 return d

@@ -1,7 +1,7 @@
 package boss.tetris.model
 
 import boss.tetris.basics.Dir1D
-import boss.tetris.basics.Dir2D
+import boss.tetris.basics.Direction2D
 import boss.tetris.basics.FreeWays as FW
 import boss.tetris.graphics.Matrix
 import boss.tetris.graphics.base.ShapeRepresentation
@@ -18,61 +18,61 @@ enum class Shapes(
     LONG(
         ViewDataContainer.factory.ShapeRep,
         Matrix(arrayOf(
-            FW.DO,
-            FW.VE,
-            FW.VE,
-            FW.UP ),
-            1, FW.IS),
+            FW.DOWN_OPEN,
+            FW.VERTICAL_OPEN,
+            FW.VERTICAL_OPEN,
+            FW.UP_OPEN ),
+            1, FW.ISOLATED),
         Color.Named.BLUE()
     ),
     SQUARE(
         ViewDataContainer.factory.ShapeRep,
         Matrix(arrayOf(
-            FW.DR, FW.DL,
-            FW.UR, FW.UL ),
-            2, FW.IS),
+            FW.DOWN_AND_RIGHT_OPEN, FW.DOWN_AND_LEFT_OPEN,
+            FW.UP_AND_RIGHT_OPEN, FW.UP_AND_LEFT_OPEN ),
+            2, FW.ISOLATED),
         Color.Named.RED()
     ),
     T_LETTER(
         ViewDataContainer.factory.ShapeRep,
         Matrix(arrayOf(
-            FW.RI, FW.NU, FW.LE,
-            FW.IS, FW.UP, FW.IS ),
-            3, FW.IS),
+            FW.RIGHT_OPEN, FW.UP_CLOSED, FW.LEFT_OPEN,
+            FW.ISOLATED, FW.UP_OPEN, FW.ISOLATED ),
+            3, FW.ISOLATED),
         Color.Named.GREEN()
     ),
     L_LETTER(
         ViewDataContainer.factory.ShapeRep,
         Matrix(arrayOf(
-            FW.IS, FW.DO,
-            FW.IS, FW.VE,
-            FW.RI, FW.UL),
-            2, FW.IS),
+            FW.ISOLATED, FW.DOWN_OPEN,
+            FW.ISOLATED, FW.VERTICAL_OPEN,
+            FW.RIGHT_OPEN, FW.UP_AND_LEFT_OPEN),
+            2, FW.ISOLATED),
         Color.Named.YELLOW()
     ),
     L_REVERSE(
         ViewDataContainer.factory.ShapeRep,
         Matrix(arrayOf(
-            FW.DO, FW.IS,
-            FW.VE, FW.IS,
-            FW.UR, FW.LE),
-            2, FW.IS),
+            FW.DOWN_OPEN, FW.ISOLATED,
+            FW.VERTICAL_OPEN, FW.ISOLATED,
+            FW.UP_AND_RIGHT_OPEN, FW.LEFT_OPEN),
+            2, FW.ISOLATED),
         Color.Named.ORANGE()
     ),
     Z_LETTER(
         ViewDataContainer.factory.ShapeRep,
         Matrix(arrayOf(
-            FW.RI, FW.DL, FW.IS,
-            FW.IS, FW.UR, FW.LE),
-            3, FW.IS),
+            FW.RIGHT_OPEN, FW.DOWN_AND_LEFT_OPEN, FW.ISOLATED,
+            FW.ISOLATED, FW.UP_AND_RIGHT_OPEN, FW.LEFT_OPEN),
+            3, FW.ISOLATED),
         Color.Named.CIAN()
     ),
     Z_REVERSE(
         ViewDataContainer.factory.ShapeRep,
         Matrix(arrayOf(
-            FW.IS, FW.DR, FW.LE,
-            FW.RI, FW.UL, FW.IS),
-            3, FW.IS),
+            FW.ISOLATED, FW.DOWN_AND_RIGHT_OPEN, FW.LEFT_OPEN,
+            FW.RIGHT_OPEN, FW.UP_AND_LEFT_OPEN, FW.ISOLATED),
+            3, FW.ISOLATED),
         Color.Named.PURPLE()
     );
 
@@ -82,28 +82,28 @@ enum class Shapes(
 
     var stateCounter: Long = 0
 
-    var direction = Dir2D.UP
+    var direction = Direction2D.UP
         set(value) {
             field = value;stateCounter++
         }
 
     val lookMap = mapOf(
-        Pair(Dir2D.UP, lookUp),
-        Pair(Dir2D.RIGHT, lookUp[Dir1D.RIGHT]),
-        Pair(Dir2D.DOWN, lookUp[Dir1D.RIGHT][Dir1D.RIGHT]),
-        Pair(Dir2D.LEFT, lookUp[Dir1D.LEFT])
+        Pair(Direction2D.UP, lookUp),
+        Pair(Direction2D.RIGHT, lookUp[Dir1D.RIGHT]),
+        Pair(Direction2D.DOWN, lookUp[Dir1D.RIGHT][Dir1D.RIGHT]),
+        Pair(Direction2D.LEFT, lookUp[Dir1D.LEFT])
     )
 
     val Look get() = lookMap[direction] as Matrix<FW>
 
 
     init {
-        for( i in 0 until (lookMap[Dir2D.RIGHT] as Matrix).size.area)
-            (lookMap[Dir2D.RIGHT] as Matrix<FW>)[i]= (lookMap[Dir2D.RIGHT] as Matrix<FW>)[i][Dir1D.RIGHT]
-        for( i in 0 until (lookMap[Dir2D.DOWN] as Matrix).size.area)
-            (lookMap[Dir2D.DOWN] as Matrix<FW>)[i]= (lookMap[Dir2D.DOWN] as Matrix<FW>)[i][Dir1D.RIGHT][Dir1D.RIGHT]
-        for( i in 0 until (lookMap[Dir2D.LEFT] as Matrix).size.area)
-            (lookMap[Dir2D.LEFT] as Matrix<FW>)[i]= (lookMap[Dir2D.LEFT] as Matrix<FW>)[i][Dir1D.LEFT]
+        for( i in 0 until (lookMap[Direction2D.RIGHT] as Matrix).size.area)
+            (lookMap[Direction2D.RIGHT] as Matrix<FW>)[i]= (lookMap[Direction2D.RIGHT] as Matrix<FW>)[i][Dir1D.RIGHT]
+        for( i in 0 until (lookMap[Direction2D.DOWN] as Matrix).size.area)
+            (lookMap[Direction2D.DOWN] as Matrix<FW>)[i]= (lookMap[Direction2D.DOWN] as Matrix<FW>)[i][Dir1D.RIGHT][Dir1D.RIGHT]
+        for( i in 0 until (lookMap[Direction2D.LEFT] as Matrix).size.area)
+            (lookMap[Direction2D.LEFT] as Matrix<FW>)[i]= (lookMap[Direction2D.LEFT] as Matrix<FW>)[i][Dir1D.LEFT]
     }
 
     fun rotate(d:Dir1D) {
